@@ -1,0 +1,39 @@
+<project name="Motion-Planning" basedir="." default="main">
+
+  <property name="src.dir"     value="src"/>
+
+  <property name="build.dir"   value="out/production/Motion-Planning"/>
+  <property name="classes.dir" value="${build.dir}"/>
+  <property name="jar.dir"     value="."/>
+
+  <property name="main-class"  value="src/solution/Main"/>
+
+
+
+  <target name="clean">
+    <delete dir="${build.dir}"/>
+    <mkdir dir="${build.dir}"/>
+  </target>
+
+  <target name="compile">
+    <javac srcdir="${src.dir}" destdir="${classes.dir}" fork="true">
+    </javac>
+  </target>
+
+  <target name="jar" depends="compile">
+    <jar destfile="${jar.dir}/a2-7702-44688813.jar" basedir="${classes.dir}">
+      <manifest>
+        <attribute name="Main-Class" value="${main-class}"/>
+      </manifest>
+    </jar>
+  </target>
+
+  <target name="run" depends="jar">
+    <java jar="${jar.dir}/a2-7702-44688813.jar" fork="true"/>
+  </target>
+
+  <target name="clean-build" depends="clean,jar"/>
+
+  <target name="main" depends="clean,run"/>
+
+</project>
