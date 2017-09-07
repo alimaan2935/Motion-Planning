@@ -1,12 +1,14 @@
 
 import problem.ProblemSpec;
-import solution.OptimalConfigs;
+import solution.OptimalPoints;
 
 import java.io.IOException;
 
 public class Main {
 
     public static void main(String[] args) {
+
+        args = new String[] {"testcases/3ASV-easy.txt", "testcases/exp.txt"};
 
         ProblemSpec ps = new ProblemSpec();
         try {
@@ -15,8 +17,9 @@ public class Main {
 
         }
 
-        OptimalConfigs oc = new OptimalConfigs();
-        oc.goalDistance(ps);
+        OptimalPoints op = new OptimalPoints(ps);
+        System.out.println(op.getPoints());
+
         try {
             ps.saveSolution(args[1]);
         }catch (IOException e) {
