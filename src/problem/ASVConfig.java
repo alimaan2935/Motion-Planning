@@ -31,6 +31,18 @@ public class ASVConfig {
 	}
 
 	/**
+	 * Constructor. Takes a List of Point2D objects
+	 *
+	 * @param coords
+	 *            Point2d coordinates of the ASVs.
+	 */
+	public ASVConfig(List<Point2D> coords) {
+		for (int i = 0; i < coords.size(); i++) {
+			asvPositions.add(coords.get(i));
+		}
+	}
+
+	/**
 	 * Constructs an ASVConfig from a space-separated string of x- and y-
 	 * coordinates
 	 *

@@ -1,56 +1,50 @@
 package solution;
 
-import problem.ProblemSpec;
 
-import java.awt.geom.Line2D;
-import java.awt.geom.PathIterator;
-import java.awt.geom.Point2D;
-import java.awt.geom.Rectangle2D;
+import problem.ProblemSpec;
+import tester.Tester;
+
+import java.io.IOException;
 
 public class Testing {
 
 
 
+
     public static void main(String[] args) {
+
+        args = new String[] {"testcases/7-ASV-x6.txt", "testcases/exp.txt", "-v"};
+
+        ProblemSpec ps = new ProblemSpec();
         try {
+            ps.loadProblem(args[0]);
+        }catch (IOException e) {
 
-            ProblemSpec ps = new ProblemSpec();
-            ps.loadProblem("testcases/3ASV-easy.txt");
-
-            Rectangle2D rect = ps.getObstacles().get(0).getRect();
-
-            System.out.println("x: "+ rect.getX());
-            System.out.println("y: "+ rect.getY());
-
-            PathIterator it = rect.getPathIterator(null);
-
-            double[] list = new double[2];
-            for (int i=0; i<6; i++) {
-                it.currentSegment(list);
-                for (double j : list)
-                    System.out.println(j);
-                it.next();
-            }
-
-            Rectangle2D rect1 = new Rectangle2D.Double(0.375,0.1,0.25,0.35);
-
-            Point2D p1 = new Point2D.Double(0.150, 0.225);
-            Point2D p2 = new Point2D.Double(0.850, 0.225);
-
-
-            System.out.println();
-
-
-
-
-
-
-
-
-
-        }catch (Exception e) {
-            System.out.println("Exceptionnnnnnnnnnn");
         }
+
+        ValidPoints v = new ValidPoints(ps);
+        //CompletePath completePath = new CompletePath(ps, v.getPath());
+        NewSolution newSolution = new NewSolution(ps, v.getPath());
+        ps.setPath(newSolution.getCompletePath());
+
+
+        try {
+            ps.saveSolution(args[1]);
+        }catch (IOException e) {
+
+        }
+
+        Tester tester = new Tester();
+        tester.main(args);
+
 
     }
 }
+
+/**
+ * Conclusion:
+ * Move one step towards next point - check if any point is colliding with obstacle
+ * if not: move to the next point
+ * if collides, transform that point from previous point i.e: center point is the previous point and moving points are the point
+ * of collision and next point
+ */

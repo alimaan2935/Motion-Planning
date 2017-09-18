@@ -1,12 +1,10 @@
 package solution;
 
 import javafx.util.Pair;
-import problem.ASVConfig;
 import problem.Obstacle;
 import problem.ProblemSpec;
 
 import java.awt.geom.Line2D;
-import java.awt.geom.PathIterator;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.text.DecimalFormat;
@@ -15,7 +13,8 @@ import java.util.List;
 
 public class OptimalPoints {
 
-    ArrayList<Point2D> allPoints = new ArrayList<>();
+    ArrayList<Point2D> allPoints;
+    ArrayList<Point2D> allPointsOnPath;
     ProblemSpec ps;
 
     public OptimalPoints(ProblemSpec ps) {
@@ -25,12 +24,18 @@ public class OptimalPoints {
     /**
      *
      */
-    public ArrayList<Point2D> getPoints() {
+    public ArrayList<Point2D> getPoints(Point2D p1, Point2D p2) {
 
-        Point2D p1 = ps.getInitialState().getASVPositions().get(0);
-        Point2D p2 = ps.getGoalState().getASVPositions().get(0);
+        allPoints = new ArrayList<>();
+        allPointsOnPath = new ArrayList<>();
+
         getAllPoints(p1, p2);
-        return allPoints;
+
+        for (int i=0; i<allPoints.size()-1; i++) {
+            allPointsOnPath.addAll(allPointsOnLine(allPoints.get(i), allPoints.get(i+1)));
+        }
+
+        return allPointsOnPath;
 
     }
 
@@ -74,6 +79,9 @@ public class OptimalPoints {
         double intervalY = diffY / (numberOfPoints);
 
         ArrayList<Point2D> points = new ArrayList<>();
+        if (numberOfPoints == 0) {
+            return points;
+        }
 
         DecimalFormat numberFormat = new DecimalFormat("0.000");
 
@@ -95,6 +103,9 @@ public class OptimalPoints {
 
 
     public Line2D[] getIntersectionPoints(Rectangle2D rectangle, Line2D line) {
+
+        double delta = getMinimumDiameter(ps.getASVCount());
+        rectangle = grow(rectangle, delta);
 
         Line2D[] lines = new Line2D[4];
         Line2D topLine = new Line2D.Double(
@@ -199,8 +210,8 @@ public class OptimalPoints {
         Point2D p2 = line.getP2();
         double dist = p1.distance(p2);
 
-        p1 = new Point2D.Double(p1.getX()-0.036, p1.getY()-0.036);
-        p2 = new Point2D.Double(p2.getX()+0.036, p2.getY()+0.036);
+        p1 = new Point2D.Double(p1.getX()-0.0036, p1.getY()-0.0036);
+        p2 = new Point2D.Double(p2.getX()+0.0036, p2.getY()+0.0036);
 
         return new Pair<>(p1, p2);
     }
@@ -278,44 +289,31 @@ public class OptimalPoints {
 
     }
 
-
-    /******************************************************************************************************************/
-    /*******************  Step 8: Get all points joining all lines and generate ASV configs   ***********/
-    /******************************************************************************************************************/
-
-
-
+    /**
+     * Returns the minimum area required for the given number of ASVs.
+     *
+     * @param asvCount
+     *            the number of ASVs
+     * @return the minimum area required.
+     */
+    public final double getMinimumDiameter(int asvCount) {
+        double radius = 0.007 * (asvCount - 1);
+        return radius*2;
+    }
 
     /**
-     * Generate All for initial and goal ASV configs
-     * @param initial
-     * @param goal
+     * Creates a new Rectangle2D that is grown by delta in each direction
+     * compared to the given Rectangle2D.
+     *
+     * @param rect
+     *            the Rectangle2D to expand.
+     * @param delta
+     *            the amount to expand by.
+     * @return a Rectangle2D expanded by delta in each direction.
      */
-    public List<ASVConfig> genASVConfigs(ASVConfig initial, ASVConfig goal) {
-
-        List<ASVConfig> path = new ArrayList<>();
-
-        List<ArrayList<Point2D>> configs = new ArrayList<>();
-
-        List<Point2D> initialPositions = initial.getASVPositions();
-        List<Point2D> goalPositions = goal.getASVPositions();
-
-        for (int i = 0; i< initial.getASVCount(); i++) {
-            Point2D p1 = initialPositions.get(i);
-            Point2D p2 = goalPositions.get(i);
-            configs.add(allPointsOnLine(p1, p2));
-        }
-
-        for (int i = 0; i<configs.get(0).size(); i++) {
-            double[] config = new double[configs.size()*2];
-            for (int j = 0; j<configs.size(); j++) {
-                config[j*2] = configs.get(j).get(i).getX();
-                config[j*2+1] = configs.get(j).get(i).getY();
-            }
-
-            path.add(new ASVConfig(config));
-        }
-        return path;
+    public Rectangle2D grow(Rectangle2D rect, double delta) {
+        return new Rectangle2D.Double(rect.getX() - delta, rect.getY() - delta,
+                rect.getWidth() + delta * 2, rect.getHeight() + delta * 2);
     }
 
 
