@@ -2,26 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ca312451-604a-45d1-9cd3-5fd2aacec54e" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/solution/CompletePath.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/solution/Edge.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/solution/Graph.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/solution/MinSrcDistComparator.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/solution/NewSolution.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/solution/OptimalConfigs.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/solution/PathPoint.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/solution/ValidPoints.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/a2-7702-44688813.jar" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Motion-Planning/Main.class" afterPath="$PROJECT_DIR$/out/production/Motion-Planning/Main.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Motion-Planning/problem/ASVConfig.class" afterPath="$PROJECT_DIR$/out/production/Motion-Planning/problem/ASVConfig.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Motion-Planning/solution/OptimalPoints.class" afterPath="$PROJECT_DIR$/out/production/Motion-Planning/solution/OptimalPoints.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Motion-Planning/solution/Testing.class" afterPath="$PROJECT_DIR$/out/production/Motion-Planning/solution/Testing.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Motion-Planning/tester/Tester.class" afterPath="$PROJECT_DIR$/out/production/Motion-Planning/tester/Tester.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Main.java" afterPath="$PROJECT_DIR$/src/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/problem/ASVConfig.java" afterPath="$PROJECT_DIR$/src/problem/ASVConfig.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/solution/OptimalPoints.java" afterPath="$PROJECT_DIR$/src/solution/OptimalPoints.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/solution/Testing.java" afterPath="$PROJECT_DIR$/src/solution/Testing.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testcases/3ASV-easy.txt" afterPath="$PROJECT_DIR$/testcases/3ASV-easy.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/solution/NewSolution.java" afterPath="$PROJECT_DIR$/src/solution/NewSolution.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testcases/exp.txt" afterPath="$PROJECT_DIR$/testcases/exp.txt" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -130,13 +111,13 @@
       <file leaf-file-name="NewSolution.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/solution/NewSolution.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-419">
-              <caret line="173" column="29" lean-forward="false" selection-start-line="173" selection-start-column="29" selection-end-line="173" selection-end-column="29" />
+            <state relative-caret-position="322">
+              <caret line="226" column="39" lean-forward="false" selection-start-line="226" selection-start-column="39" selection-end-line="226" selection-end-column="39" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#move#0;class#NewSolution#0" expanded="false" />
-                <element signature="e#8932#8933#0" expanded="true" />
-                <element signature="e#8979#8980#0" expanded="true" />
+                <element signature="e#8933#8934#0" expanded="true" />
+                <element signature="e#8980#8981#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -520,12 +501,12 @@
       <workItem from="1504602320676" duration="71182000" />
       <workItem from="1505093289355" duration="12671000" />
       <workItem from="1505198753706" duration="61971000" />
-      <workItem from="1505697955291" duration="12824000" />
+      <workItem from="1505697955291" duration="14102000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="184013000" />
+    <option name="totallyTimeSpent" value="185291000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
@@ -600,8 +581,14 @@
           <properties />
           <option name="timeStamp" value="338" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/solution/NewSolution.java</url>
+          <line>404</line>
+          <properties />
+          <option name="timeStamp" value="345" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="339" />
+      <option name="time" value="346" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -961,13 +948,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/solution/NewSolution.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-419">
-          <caret line="173" column="29" lean-forward="false" selection-start-line="173" selection-start-column="29" selection-end-line="173" selection-end-column="29" />
+        <state relative-caret-position="322">
+          <caret line="226" column="39" lean-forward="false" selection-start-line="226" selection-start-column="39" selection-end-line="226" selection-end-column="39" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#move#0;class#NewSolution#0" expanded="false" />
-            <element signature="e#8932#8933#0" expanded="true" />
-            <element signature="e#8979#8980#0" expanded="true" />
+            <element signature="e#8933#8934#0" expanded="true" />
+            <element signature="e#8980#8981#0" expanded="true" />
           </folding>
         </state>
       </provider>

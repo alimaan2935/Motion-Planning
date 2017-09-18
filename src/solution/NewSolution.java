@@ -240,6 +240,7 @@ public class NewSolution {
         return expansionToReturn;
     }
 
+
     /**
      * DO the actual expansion or contraction
      * @param toExpand
