@@ -23,6 +23,8 @@ public class Tester {
 	public static final Rectangle2D BOUNDS = new Rectangle2D.Double(0, 0, 1, 1);
 	/** The default value for maximum error */
 	public static final double DEFAULT_MAX_ERROR = 1e-5;
+	/** The default value for maximum expansion angle */
+	public static final double DEFAULT_EXP_ANGLE = Math.toRadians(0.2);
 
 	/**
 	 * Returns the minimum area required for the given number of ASVs.
@@ -535,6 +537,29 @@ public class Tester {
 	}
 
 	/**
+	 * Returns whether the given config collides with any of the given
+	 * obstacles.
+	 *
+	 *            the configuration to test.
+	 * @param obstacles
+	 *            the obstacles to test against.
+	 * @return whether the given config collides with any of the given
+	 *         obstacles.
+	 */
+	public boolean hasPointCollision(Point2D p, List<Obstacle> obstacles) {
+		List<Point2D> plist = new ArrayList<>();
+		plist.add(p);
+
+		ASVConfig c = new ASVConfig(plist);
+		for (Obstacle o : obstacles) {
+			if (hasCollision(c, o)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
 	 * Returns whether the given config collides with the given obstacle.
 	 *
 	 * @param cfg
@@ -553,6 +578,20 @@ public class Tester {
 			}
 		}
 		return false;
+	}
+
+	/**
+	 * Tests if a given config is valid or not
+	 * @param config
+	 * @return
+	 */
+	public boolean validConfig(ASVConfig config, ProblemSpec ps) {
+		boolean test1 = !hasCollision(config, ps.getObstacles());
+		boolean test3 = isConvex(config);
+		boolean test4 = hasEnoughArea(config);
+		boolean test5 = fitsBounds(config);
+
+		return test1 && test3 && test4 && test5;
 	}
 
 	/**

@@ -1,4 +1,5 @@
 
+import com.sun.javafx.geom.Vec2d;
 import problem.ASVConfig;
 import problem.ProblemSpec;
 import solution.*;
@@ -9,6 +10,7 @@ import java.io.IOException;
 import java.util.*;
 
 public class Main {
+
 
 
 
@@ -24,15 +26,8 @@ public class Main {
         }
 
 
-        ValidPoints points = new ValidPoints(ps);
-        points.getPath();
 
 
-        try {
-            ps.saveSolution(args[1]);
-        }catch (IOException e) {
-
-        }
 
 
 

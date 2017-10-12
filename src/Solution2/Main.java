@@ -1,22 +1,21 @@
-package solution;
-
+package Solution2;
 
 import problem.ProblemSpec;
+import solution.Motion;
+import solution.ValidPoints;
 import tester.Tester;
 
 import java.io.IOException;
 
-public class Testing {
-
-
+public class Main {
 
 
     public static void main(String[] args) {
 
         // args = new String[] {"testcases/3ASV-easy.txt", "testcases/exp.txt", "-v"};
         // args = new String[] {"testcases/3ASV-x4.txt", "testcases/exp.txt", "-v"};
-        // args = new String[] {"testcases/3ASV.txt", "testcases/exp.txt", "-v"};
-        args = new String[] {"testcases/7ASV-easy.txt", "testcases/exp.txt", "-v"};
+        args = new String[] {"testcases/3ASV.txt", "testcases/exp.txt", "-v"};
+        // args = new String[] {"testcases/7ASV-easy.txt", "testcases/exp.txt", "-v"};
         // args = new String[] {"testcases/7-ASV-x6.txt", "testcases/exp.txt", "-v"};
         // args = new String[] {"testcases/7-ASV-x4.txt", "testcases/exp.txt", "-v"};
         // args = new String[] {"testcases/7-ASV-x2.txt", "testcases/exp.txt", "-v"};
@@ -30,12 +29,14 @@ public class Testing {
 
         }
 
-        ValidPoints v = new ValidPoints(ps);
-        Motion motion = new Motion(ps, v.getPath());
-
         long start = System.currentTimeMillis();
 
-        ps.setPath(motion.getCompletePath());
+
+
+        MotionPlanner motionPlanner = new MotionPlanner(ps.getInitialState(), ps.getGoalState(), ps, new Tester());
+
+
+        ps.setPath(motionPlanner.getPath());
 
         long end = System.currentTimeMillis();
 
@@ -54,11 +55,3 @@ public class Testing {
 
     }
 }
-
-/**
- * Conclusion:
- * Move one step towards next point - check if any point is colliding with obstacle
- * if not: move to the next point
- * if collides, transform that point from previous point i.e: center point is the previous point and moving points are the point
- * of collision and next point
- */
